@@ -45,11 +45,37 @@
 
 
 
+```tut
+List(4,1,3,2).sorted
+```
 
+```tut
+List("d","b","c","a").sorted
+```
 
+```tut
+List(
+  (4,"a"),
+  (1,"b"),
+  (3,"c"),
+  (2,"d")
+).sorted
+```
 
+```tut
+List(
+  (1,"b"),
+  (1,"c"),
+  (1,"a")
+).sorted
+```
 
+```tut
+List("c","a","b").sorted
+```
 
+TODO reverse order
+//TODO Ordering
 
 
 

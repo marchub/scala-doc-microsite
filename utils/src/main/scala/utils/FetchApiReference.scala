@@ -89,7 +89,7 @@ class FetchApiReference {
       }.mkString("\n<ol>","\n","</ol>")
       val commentedHeader = commentOut(header).mkString("\n")
 
-      val finalHeader = commentedHeader + s"\n\n\n$WORKSHEET_START\n\n\n"
+      val finalHeader = commentedHeader + s"\n\n\n$WORKSHEET_START\n"
 
       val docPath = workSheetFile.pathAsString.replace(s"$outputRootPath${JFile.separator}", s"$docsDestinationRootPath${JFile.separator}")
                                               .replace(".sc",".md") //TODO replace from the end of string: https://stackoverflow.com/questions/37945653/scala-remove-the-last-occurrence-of-a-character
@@ -98,11 +98,16 @@ class FetchApiReference {
       println(s"Creating ${workSheetFile.pathAsString} and  ${docFile.pathAsString} files")
 
       if (workSheetFile.exists) {
-        val userContent = workSheetFile.lines.dropWhile(_.trim != WORKSHEET_START).drop(1).toList
-        workSheetFile.overwrite(finalHeader)
-          .appendLines(userContent: _*)
+        val userContentUnfiltered = workSheetFile.lines.dropWhile(_.trim != WORKSHEET_START).drop(1).toList
+        val userContent = if (userContentUnfiltered.forall(_.trim.replaceAll("[\\r\\n]", "").isEmpty)) List() else userContentUnfiltered
+        println(s"Keeping ${userContent.size} lines of user content")
 
-        docFile.clear().appendLines(unCommentBlock(finalHeader) :: userContent.map(unCommentLine) : _*)
+        if (workSheetFile.pathAsString.contains("sorted"))
+            1 + 1
+
+        workSheetFile.overwrite(finalHeader).appendLines(userContent: _*)
+
+        docFile.clear().appendLines((unCommentBlock(finalHeader) :: userContent.map(unCommentLine)) : _*)
       } else {
         workSheetFile.overwrite(finalHeader)
         docFile.clear().appendLines(unCommentBlock(finalHeader))
@@ -156,7 +161,7 @@ class FetchApiReference {
 
   def unCommentBlock(s: String) = s.replace(WORKSHEET_START, "### Examples\n\n")
                                          .replace(s"\n$COMMENT","\n")
-  def unCommentLine(s: String) = s.replaceFirst("\\/\\/","")
+  def unCommentLine(s: String) = if (s.startsWith("//")) s.replaceFirst("\\/\\/","") else s
 
 
   def createClassesIndex(apiClasses: List[ApiClass]) : Unit = {

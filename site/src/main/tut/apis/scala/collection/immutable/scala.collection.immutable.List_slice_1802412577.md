@@ -43,29 +43,3 @@ letters.slice(<span class="num">1</span>,<span class="num">3</span>) <span class
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

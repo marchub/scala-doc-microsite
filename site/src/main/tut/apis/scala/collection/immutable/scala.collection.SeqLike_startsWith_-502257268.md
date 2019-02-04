@@ -46,14 +46,38 @@
 
 
 
+```tut
+List(1, 2, 3, 4).startsWith(List(1, 2))
+```
+
+```tut
+List(1, 2, 3, 4).startsWith(List(5, 6))
+```
+
+```tut
+"Hello there".startsWith("Hell")
+```
+
+```tut
+"Hello there".startsWith("the", 6)
+```
+
+```tut:silent
+val animals = List("calf", "kitten", "puppy", "cub")
+```
+```tut
+for (animal <- animals if animal.startsWith("c"))
+  println(animal)
+```
+
+```tut
+List(1, 2, 3, 4).startsWith(List(3, 4))
+```
 
 
-
-
-
-
-
-
+```tut
+List(1, 2, 3, 4).startsWith(List(3, 4), 2)
+```
 
 
 

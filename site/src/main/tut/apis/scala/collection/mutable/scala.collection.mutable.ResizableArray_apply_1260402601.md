@@ -51,15 +51,3 @@ res1: <span class="std">Int</span> = <span class="num">4</span></pre>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-

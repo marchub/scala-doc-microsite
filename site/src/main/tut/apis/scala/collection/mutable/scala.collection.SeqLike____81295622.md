@@ -54,15 +54,3 @@ scala&gt; println(a)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-

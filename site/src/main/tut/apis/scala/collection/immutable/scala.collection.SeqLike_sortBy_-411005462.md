@@ -64,6 +64,23 @@ res0: <span class="std">Array</span>[<span class="std">String</span>] = <span cl
 
 
 
+```tut
+List(
+  (4,"a"),
+  (1,"b"),
+  (3,"c"),
+  (2,"d")
+).sortBy(_._1)
+```
+
+```tut
+List(
+  (4,"a"),
+  (1,"b"),
+  (3,"c"),
+  (2,"d")
+).sortBy(_._2)
+```
 
 
 
