@@ -79,6 +79,24 @@ List(
 ).sortBy(_._2)
 //```
 
+//```tut:silent
+case class Point(x: Int, y: Int)
+
+val points = List(
+  Point(4,1),
+  Point(1,4),
+  Point(3,2),
+  Point(2,3)
+)
+//```
+
+//```tut
+points.sortBy(_.x)
+//```
+
+//```tut
+points.sortBy(_.y)
+//```
 
 
 
